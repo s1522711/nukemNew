@@ -3,6 +3,9 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+nukemNew/nukemNew/bin/app.publish/Global.asax
+nukemNew/nukemNew/bin/app.publish/App_Data
+
 # User-specific files
 *.rsuser
 *.suo

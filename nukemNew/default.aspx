@@ -187,5 +187,4 @@
     </div>
 
 
-    <script src="js/temp.js"></script>
 </asp:Content>

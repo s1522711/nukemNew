@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Configuration;
 
 namespace nukemNew.checkout.confirmed
 {
@@ -13,9 +14,7 @@ namespace nukemNew.checkout.confirmed
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string path = AppDomain.CurrentDomain.BaseDirectory;
-            AppDomain.CurrentDomain.SetData("DataDirectory", path);
-            SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\App_Data\\Database.mdf;Integrated Security=True");
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conStr"].ConnectionString);
 
             string SQLStr = "SELECT * FROM tblOrders";
             SqlCommand cmd = new SqlCommand(SQLStr, con);

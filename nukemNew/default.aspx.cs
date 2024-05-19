@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Configuration;
 
 namespace nukemNew
 {
@@ -80,9 +81,7 @@ namespace nukemNew
 
         public string GetProductPrice(string product)
         {
-            string path = AppDomain.CurrentDomain.BaseDirectory;
-            AppDomain.CurrentDomain.SetData("DataDirectory", path);
-            SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\App_Data\\Database.mdf;Integrated Security=True");
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conStr"].ConnectionString);
             SqlCommand cmd = new SqlCommand("SELECT * FROM tblItems", con);
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
@@ -99,9 +98,7 @@ namespace nukemNew
 
         public string GetProductName(string product)
         {
-            string path = AppDomain.CurrentDomain.BaseDirectory;
-            AppDomain.CurrentDomain.SetData("DataDirectory", path);
-            SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\App_Data\\Database.mdf;Integrated Security=True");
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conStr"].ConnectionString);
             SqlCommand cmd = new SqlCommand("SELECT * FROM tblItems", con);
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();

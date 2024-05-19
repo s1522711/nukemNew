@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -141,9 +142,7 @@ namespace nukemNew.register
                 }
                 else
                 {
-                    string path = AppDomain.CurrentDomain.BaseDirectory;
-                    AppDomain.CurrentDomain.SetData("DataDirectory", path);
-                    SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\App_Data\\Database.mdf;Integrated Security=True");
+                    SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conStr"].ConnectionString);
 
                     string SQLStr = "SELECT * FROM tblUsers";
                     SqlCommand cmd = new SqlCommand(SQLStr, con);

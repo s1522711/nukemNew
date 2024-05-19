@@ -11,7 +11,7 @@ const disableCloseButton = async () => {
 }
 
 const playExplosion = async () => {
-    var audio = new Audio('/pages/mp3/explosion.mp3');
+    var audio = new Audio('/mp3/explosion.mp3');
     audio.play();
     var nukeModal = bootstrap.Modal.getOrCreateInstance(document.getElementById('explosionModal'));
     nukeModal.hide();
@@ -22,7 +22,7 @@ const playExplosion = async () => {
 }
 
 const playExplosionHome = async () => {
-    var audio = new Audio('/pages/mp3/explosion.mp3');
+    var audio = new Audio('/mp3/explosion.mp3');
     audio.play();
     var nukeModal = bootstrap.Modal.getOrCreateInstance(document.getElementById('explosionModal'));
     nukeModal.hide();

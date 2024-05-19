@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -65,9 +66,7 @@ namespace nukemNew.login
             if (IsPostBack)
             {
                 // connect to the database and get the user data from the database
-                string path = AppDomain.CurrentDomain.BaseDirectory;
-                AppDomain.CurrentDomain.SetData("DataDirectory", path);
-                SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\App_Data\\Database.mdf;Integrated Security=True");
+                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conStr"].ConnectionString);
                 SqlCommand cmd = new SqlCommand("SELECT username, password, admin FROM tblUsers", con);
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -29,9 +30,7 @@ namespace nukemNew.admin
             aboutBtn.Visible = (bool)Session["login"];
             admin.Visible = (bool)Session["admin"] && (bool)Session["login"];
 
-            string path = AppDomain.CurrentDomain.BaseDirectory;
-            AppDomain.CurrentDomain.SetData("DataDirectory", path);
-            SqlConnection con = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\App_Data\\Database.mdf;Integrated Security=True");
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conStr"].ConnectionString);
             SqlCommand cmd = new SqlCommand("SELECT * FROM tblUsers", con);
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             DataSet ds = new DataSet();

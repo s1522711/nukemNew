@@ -23,7 +23,7 @@ namespace nukemNew.terms
             Session["login"] = false;
             Session["admin"] = false;
             Session["username"] = "Guest";
-            Response.Redirect("../");
+            Response.Redirect("/");
         }
     }
 }

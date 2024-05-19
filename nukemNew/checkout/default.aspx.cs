@@ -33,7 +33,7 @@ namespace nukemNew.checkout
         {
             if (!(bool)Session["login"])
             {
-                Response.Redirect("../intruder/");
+                Response.Redirect("/intruder/");
             }
             errorMessage.Visible = false;
 

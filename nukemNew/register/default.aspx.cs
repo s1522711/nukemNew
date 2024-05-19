@@ -174,7 +174,7 @@ namespace nukemNew.register
                     Session["login"] = true;
                     Session["admin"] = false;
                     errorMessage.InnerText = "";
-                    Response.Redirect("../");
+                    Response.Redirect("/");
                 }
             }
         }
@@ -184,7 +184,7 @@ namespace nukemNew.register
             Session["login"] = false;
             Session["admin"] = false;
             Session["username"] = "Guest";
-            Response.Redirect("../");
+            Response.Redirect("/");
         }
     }
 }

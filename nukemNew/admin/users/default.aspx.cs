@@ -44,7 +44,7 @@ namespace nukemNew.admin.users
         {
             if (!(bool)Session["login"] || !(bool)Session["admin"])
             {
-                Response.Redirect("../../intruder/");
+                Response.Redirect("/intruder/");
             }
 
             usernameStrDisplay.Visible = (bool)Session["login"];
@@ -67,7 +67,7 @@ namespace nukemNew.admin.users
             Session["login"] = false;
             Session["admin"] = false;
             Session["username"] = "Guest";
-            Response.Redirect("../../");
+            Response.Redirect("/");
         }
     }
 }

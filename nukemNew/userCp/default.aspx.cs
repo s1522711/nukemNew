@@ -99,7 +99,7 @@ namespace nukemNew.userCp
         {
             if (!(bool)Session["login"])
             {
-                Response.Redirect("../intruder/");
+                Response.Redirect("/intruder/");
             }
 
             usernameStrDisplay.Visible = (bool)Session["login"];
@@ -139,7 +139,7 @@ namespace nukemNew.userCp
             Session["login"] = false;
             Session["admin"] = false;
             Session["username"] = "Guest";
-            Response.Redirect("../");
+            Response.Redirect("/");
         }
     }
 }

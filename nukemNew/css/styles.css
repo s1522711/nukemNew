@@ -1,0 +1,11 @@
+.modal.fade.zoom:not(.show) .modal-dialog {
+    transform: scale(5);
+}
+
+.ger-fade:not(.show) {
+    opacity: 0;
+}
+
+.ger-fade {
+    transition: opacity .05s linear;
+}

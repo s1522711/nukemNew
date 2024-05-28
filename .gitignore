@@ -349,3 +349,4 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/nukemNew/bin/app.publish/Web.config

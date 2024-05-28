@@ -93,6 +93,7 @@
     <Content Include="img\index\Little_boy.jpg" />
     <Content Include="img\index\nick.png" />
     <Content Include="img\index\nuke.gif" />
+    <Content Include="img\index\oggycopter.png" />
     <Content Include="img\index\secret.jpg" />
     <Content Include="img\index\tamir-missile.jpg" />
     <Content Include="intruder\default.aspx" />

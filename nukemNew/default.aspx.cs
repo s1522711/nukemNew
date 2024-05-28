@@ -49,9 +49,9 @@ namespace nukemNew
             Response.Redirect("~/checkout");
         }
 
-        protected void giladDollBtn_Click(object sender, EventArgs e)
+        protected void OggyCopterBtn_Click(object sender, EventArgs e)
         {
-            Session["selectedProduct"] = "GiladDoll";
+            Session["selectedProduct"] = "OggyCopter";
             Response.Redirect("~/checkout");
         }
 

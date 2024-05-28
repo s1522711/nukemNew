@@ -113,13 +113,13 @@
             </div>
             <div class="col-sm-3 mb-2" style="width: 400px">
                 <div class="card">
-                    <img src="img/index/gilad.png" alt="tsar-bobma" height="210" class=" card-img-top ">
+                    <img src="/img/index/oggycopter.png" alt="oggycopter" height="210" class=" card-img-top ">
                     <div class="card-body">
-                        <div class="card-title"><%=GetProductName("GiladDoll") %> <span class="badge bg-warning" onclick="location.href='secret/';"><a href="secret/" class=" text-decoration-none text-black">New!</a></span></div>
-                        <div class="card-text">Price: $<%=GetProductPrice("GiladDoll") %></div>
+                        <div class="card-title"><%=GetProductName("OggyCopter") %> <span class="badge bg-warning" onclick="location.href='secret/';"><a href="secret/" class=" text-decoration-none text-black">New!</a></span></div>
+                        <div class="card-text">Price: $<%=GetProductPrice("OggyCopter") %></div>
 
                     </div>
-                    <button type="button" runat="server" onserverclick="giladDollBtn_Click"
+                    <button type="button" runat="server" onserverclick="OggyCopterBtn_Click"
                         class="btn btn-primary btn-block col-sm-11 mb-2 mx-auto">
                         Buy
                     </button>

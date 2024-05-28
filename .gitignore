@@ -350,3 +350,9 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /nukemNew/bin/app.publish/Web.config
+nukemNew/bin/app.publish/Web.config
+nukemNew/bin/app.publish/App_Data/Database_log.ldf
+nukemNew/bin/app.publish/App_Data/Database.mdf
+nukemNew/bin/app.publish/App_Data/Database_log.ldf
+nukemNew/bin/app.publish/App_Data/Database_log.ldf
+nukemNew/bin/app.publish/App_Data/Database.mdf

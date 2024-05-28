@@ -411,7 +411,7 @@
         <div class="row justify-content-center">
             <div class="col-7">
                 <p class="display-1 text-center">Gilad Credits:</p>
-                <h3 class="text-center">Created by Yair with my assistance!</h3>
+                <h3 class="text-center">Created by the random pig and Yair with my assistance!</h3>
             </div>
 
         </div>

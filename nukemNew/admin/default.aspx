@@ -78,11 +78,11 @@
             <div class="col-sm-3 mb-2" style="width: 400px">
                 <div class="card">
                     <div class="card-body">
-                        <div class="card-title">Product Amount:</div>
+                        <div class="card-title">Total Item Amount:</div>
                         <div class="card-text" runat="server" id="productCountDiv"></div>
                     </div>
-                    <button type="button" class="btn btn-primary btn-block col-sm-11 mb-2 mx-auto" onclick="location.href = '/';">
-                        View Products List (Home Page)
+                    <button type="button" class="btn btn-primary btn-block col-sm-11 mb-2 mx-auto" onclick="location.href = './items';">
+                        View Item List
                     </button>
                 </div>
             </div>

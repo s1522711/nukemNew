@@ -66,6 +66,7 @@
   <ItemGroup>
     <Content Include="about\default.aspx" />
     <Content Include="admin\default.aspx" />
+    <Content Include="admin\items\Default.aspx" />
     <Content Include="admin\orders\default.aspx" />
     <Content Include="admin\users\default.aspx" />
     <Content Include="android-chrome-192x192.png" />
@@ -130,6 +131,13 @@
     </Compile>
     <Compile Include="admin\default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\items\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\items\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\orders\default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>

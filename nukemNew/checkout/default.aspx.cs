@@ -164,12 +164,12 @@ namespace nukemNew.checkout
                     errorMessage.InnerText = "Please enter your credit card expiration date.";
                     errorMessage.Visible = true;
                 }
-                else if (Request.Form["cc-expiration"].Length < 4)
+                else if (Request.Form["cc-expiration"].Replace(" / ", "").Length < 4)
                 {
                     errorMessage.InnerText = "Credit card expiration date is too short.";
                     errorMessage.Visible = true;
                 }
-                else if (Request.Form["cc-expiration"].Length > 5)
+                else if (Request.Form["cc-expiration"].Replace(" / ", "").Length > 4)
                 {
                     errorMessage.InnerText = "Credit card expiration date is too long.";
                     errorMessage.Visible = true;

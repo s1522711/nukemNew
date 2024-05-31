@@ -396,4 +396,5 @@
         </footer>
     </div>
     <script src="checkout.js"></script>
+    <script src="date-format.js"></script>
 </asp:Content>

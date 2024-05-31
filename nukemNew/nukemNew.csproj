@@ -79,6 +79,7 @@
     <Content Include="checkout\checkout.css" />
     <Content Include="checkout\checkout.js" />
     <Content Include="checkout\confirmed\default.aspx" />
+    <Content Include="checkout\date-format.js" />
     <Content Include="checkout\default.aspx" />
     <Content Include="css\styles.css" />
     <Content Include="default.aspx" />

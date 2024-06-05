@@ -21,7 +21,7 @@ namespace nukemNew
             Session["login"] = false;
             Session["admin"] = false;
             Session["selectedProduct"] = "none";
-            Session["orderId"] = 0;
+            Session["userId"] = -1;
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)

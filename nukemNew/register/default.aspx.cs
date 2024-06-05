@@ -38,7 +38,7 @@ namespace nukemNew.register
         }
 
         /*
-         * this function finds the user in the database and checks if the password is correct
+         * this function finds the user in the database and checks if the password is correct and returns the user index
          * input: username, password, dataset
          * output: index of the user in the dataset, -1 if not found
          */
@@ -170,9 +170,13 @@ namespace nukemNew.register
                     adapter.UpdateCommand = cb.GetInsertCommand();
                     adapter.Update(ds, "users");
 
+                    ds.Clear();
+                    adapter.Fill(ds, "users");
+
                     Session["username"] = Request.Form["usernameInput"];
                     Session["login"] = true;
                     Session["admin"] = false;
+                    Session["userId"] = ds.Tables["users"].Rows[FindAndCheckUser(Request.Form["usernameInput"], ds.Tables["users"])]["userId"].ToString();
                     errorMessage.InnerText = "";
                     Response.Redirect("/");
                 }

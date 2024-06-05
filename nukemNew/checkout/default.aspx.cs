@@ -231,8 +231,8 @@ namespace nukemNew.checkout
                     {
                         errorMessage.InnerText = "Order placed successfully!";
                         errorMessage.Visible = true;
-                        Session["orderId"] = ds.Tables["orders"].Rows[ds.Tables["orders"].Rows.Count - 1]["Id"];
-                        Response.Redirect("./confirmed");
+                        string orderId = ds.Tables["orders"].Rows[ds.Tables["orders"].Rows.Count - 1]["Id"].ToString();
+                        Response.Redirect($"./confirmed?orderId={orderId}");
                     }
                     else
                     {

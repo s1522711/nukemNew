@@ -12,6 +12,10 @@
             <div class="py-5 text-center">
                 <h1>Nukem Checkout form</h1>
                 <br />
+                <div id="adminText" runat="server">
+                    <h2 class="text-danger fw-bold">ADMIN MODE</h2>
+                    <br />
+                </div>
                 <h3>Thank you for your purchase!</h3>
                 <div id="orderData" runat="server">
                     <p class="lead">Your order number is: <strong>#534534</strong></p>

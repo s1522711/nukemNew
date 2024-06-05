@@ -67,7 +67,7 @@ namespace nukemNew.login
             {
                 // connect to the database and get the user data from the database
                 SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conStr"].ConnectionString);
-                SqlCommand cmd = new SqlCommand("SELECT username, password, admin FROM tblUsers", con);
+                SqlCommand cmd = new SqlCommand("SELECT userId, username, password, admin FROM tblUsers", con);
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
@@ -79,7 +79,8 @@ namespace nukemNew.login
                     Session["username"] = Request.Form["username"]; // store the username in the session
                     Session["login"] = true; // set the login session variable to true
                     Session["admin"] = (bool)dt.Rows[userIndex]["admin"]; // set the admin session variable to the value from the database
-                                                                          //errorMessage.Visible = false;
+                    Session["userId"] = dt.Rows[userIndex]["userId"].ToString(); // set the userId session variable to the value from the database
+                                                                      //errorMessage.Visible = false;
                     errorMessage.InnerText = ""; // clear the error message
                     Response.Redirect("../"); // redirect to the home page
                 }
@@ -88,6 +89,7 @@ namespace nukemNew.login
                     Session["username"] = "Guest";
                     Session["login"] = false;
                     Session["admin"] = false;
+                    Session["userId"] = -1;
                     errorMessage.Visible = true;
                     errorMessage.InnerText = "Invalid username or password";
                 }

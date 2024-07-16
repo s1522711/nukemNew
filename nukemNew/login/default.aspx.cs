@@ -71,6 +71,12 @@ namespace nukemNew.login
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
+                if (dt != null)
+                {
+                    Session["username"] = Request.Form["username"];
+                    Session["login"] = true;
+                    Session["admin"] = (bool)dt.Rows[0]["admin"];
+                }
 
                 // check if the user exists and the password is correct
                 int userIndex = FindAndCheckUser(Request.Form["username"], ComputeSha256Hash(Request.Form["password"]), dt);

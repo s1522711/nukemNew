@@ -69,14 +69,14 @@
                         </div>
                         <!-- password pattern: pattern="[A-Za-z!@#0-9]{8,50}" -->
                         <div class="form-row form-floating mb-3">
-                            <input type="password" class="form-control check-validity" pattern="[A-Za-z!@#0-9]{8,50}" title="the password must be alphanumeric and must consist of at least 8 chars" id="passwordInput" name="passwordInput" placeholder="Must be at least 8 characters long!" aria-describedby="passwordHelpBlock" required>
+                            <input type="password" class="form-control check-validity" pattern="[A-Za-z!@.#0-9]{8,50}" title="the password must be alphanumeric and must consist of at least 8 chars" id="passwordInput" name="passwordInput" placeholder="Must be at least 8 characters long!" aria-describedby="passwordHelpBlock" required>
                             <label for="passwordInput" class="form-label">Password</label>
                             <div id="passwordHelpBlock" class="form-text">
                                 Your Password must be at least 8 characters long and must contain at least one letter and one number.
                             </div>
                         </div>
                         <div class="form-row form-floating mb-3">
-                            <input type="password" class="form-control" pattern="[A-Za-z!@#0-9]{8,50}" placeholder="Confirm Password" title="the password must be alphanumeric and must consist of at least 8 chars" id="passwordConfirmInput" name="passwordConfirmInput" value="" required>
+                            <input type="password" class="form-control" pattern="[A-Za-z!@.#0-9]{8,50}" placeholder="Confirm Password" title="the password must be alphanumeric and must consist of at least 8 chars" id="passwordConfirmInput" name="passwordConfirmInput" value="" required>
                             <label for="passwordConfirmInput" class="form-label">Confirm Password</label>
                             <div class="invalid-feedback">
                                 Please confirm your password.

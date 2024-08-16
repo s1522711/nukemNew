@@ -86,8 +86,8 @@
                                     </tr>
                                 </ItemTemplate>
                                 <FooterTemplate>
-                                    </tbody>
-        </table>
+                                        </tbody>
+                                    </table>
    
                                 </FooterTemplate>
                             </asp:Repeater>

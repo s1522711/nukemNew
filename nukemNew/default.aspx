@@ -69,6 +69,7 @@
     <!-- products -->
     <div class="container-fluid mt-3" runat="server" id="productsDiv">
         <div class="row justify-content-center">
+            <!--
             <div class="col-sm-3 mb-2" style="width: 400px">
                 <div class="card">
                     <img src="img/index/tsar-bobma.webp" alt="tsar-bobma" height="210" class=" card-img-top ">
@@ -77,10 +78,7 @@
                         <div class="card-text">Price: $<%=GetProductPrice("TsarBomba") %></div>
 
                     </div>
-                    <button type="button" runat="server" onserverclick="tsarBombaBtn_Click"
-                        class="btn btn-primary btn-block col-sm-11 mb-2 mx-auto">
-                        Buy
-                    </button>
+                    <asp:Button runat="server" Text='Buy' CommandArgument='TsarBomba' OnClick="Buy_Click" CssClass='btn btn-primary btn-block col-sm-11 mb-2 mx-auto' />
                 </div>
             </div>
             <div class="col-sm-3 mb-2" style="width: 400px">
@@ -91,10 +89,7 @@
                         <div class="card-text">Price: $<%=GetProductPrice("DukeNukem") %></div>
 
                     </div>
-                    <button type="button" runat="server" onserverclick="dukeNukemBtn_Click"
-                        class="btn btn-primary btn-block col-sm-11 mb-2 mx-auto">
-                        Buy
-                    </button>
+                    <asp:Button runat="server" Text='Buy' CommandArgument='DukeNukem' OnClick="Buy_Click" CssClass='btn btn-primary btn-block col-sm-11 mb-2 mx-auto' />
                 </div>
             </div>
             <div class="col-sm-3 mb-2" style="width: 400px">
@@ -105,10 +100,7 @@
                         <div class="card-text">Price: $<%=GetProductPrice("CS2Bomb") %></div>
 
                     </div>
-                    <button type="button" runat="server" onserverclick="csBombBtn_Click"
-                        class="btn btn-primary btn-block col-sm-11 mb-2 mx-auto">
-                        Buy
-                    </button>
+                    <asp:Button runat="server" Text='Buy' CommandArgument='CS2Bomb' OnClick="Buy_Click" CssClass='btn btn-primary btn-block col-sm-11 mb-2 mx-auto' />
                 </div>
             </div>
             <div class="col-sm-3 mb-2" style="width: 400px">
@@ -119,10 +111,7 @@
                         <div class="card-text">Price: $<%=GetProductPrice("OggyCopter") %></div>
 
                     </div>
-                    <button type="button" runat="server" onserverclick="OggyCopterBtn_Click"
-                        class="btn btn-primary btn-block col-sm-11 mb-2 mx-auto">
-                        Buy
-                    </button>
+                    <asp:Button runat="server" Text='Buy' CommandArgument='OggyCopter' OnClick="Buy_Click" CssClass='btn btn-primary btn-block col-sm-11 mb-2 mx-auto' />
                 </div>
             </div>
             <div class="col-sm-3 mb-2" style="width: 400px">
@@ -135,10 +124,7 @@
                         <div class="card-text">Price: $<%=GetProductPrice("CBS") %></div>
 
                     </div>
-                    <button type="button" runat="server" onserverclick="breakingServiceBtn_Click"
-                        class="btn btn-primary btn-block col-sm-11 mb-2 mx-auto">
-                        Buy
-                    </button>
+                    <asp:Button runat="server" Text='Buy' CommandArgument='CBS' OnClick="Buy_Click" CssClass='btn btn-primary btn-block col-sm-11 mb-2 mx-auto' />
                 </div>
             </div>
             <div class="col-sm-3 mb-2" style="width: 400px">
@@ -149,10 +135,7 @@
                         <div class="card-text">Price: $<%=GetProductPrice("TamirGTA") %></div>
 
                     </div>
-                    <button type="button" runat="server" onserverclick="tamirGtaBtn_Click"
-                        class="btn btn-primary btn-block col-sm-11 mb-2 mx-auto">
-                        Buy
-                    </button>
+                    <asp:Button runat="server" Text='Buy' CommandArgument='TamirGTA' OnClick="Buy_Click" CssClass='btn btn-primary btn-block col-sm-11 mb-2 mx-auto' />
                 </div>
             </div>
             <div class="col-sm-3 mb-2" style="width: 400px">
@@ -163,10 +146,7 @@
                         <div class="card-text">Price: $<%=GetProductPrice("Nick") %></div>
 
                     </div>
-                    <button type="button" runat="server" onserverclick="nickBtn_Click"
-                        class="btn btn-primary btn-block col-sm-11 mb-2 mx-auto">
-                        Buy
-                    </button>
+                    <asp:Button runat="server" Text='Buy' CommandArgument='Nick' OnClick="Buy_Click" CssClass='btn btn-primary btn-block col-sm-11 mb-2 mx-auto' />
                 </div>
             </div>
             <div class="col-sm-3 mb-2" style="width: 400px">
@@ -177,12 +157,25 @@
                         <div class="card-text">Price: $<%=GetProductPrice("LittleBoy") %></div>
 
                     </div>
-                    <button type="button" runat="server" onserverclick="littleBoyBtn_Click"
-                        class="btn btn-primary btn-block col-sm-11 mb-2 mx-auto">
-                        Buy
-                    </button>
+                    <asp:Button runat="server" Text='Buy' CommandArgument='LittleBoy' OnClick="Buy_Click" CssClass='btn btn-primary btn-block col-sm-11 mb-2 mx-auto' />
                 </div>
             </div>
+            -->
+            <asp:Repeater ID="itemRepeater" runat="server">
+                <ItemTemplate>
+                    <div class="col-sm-3 mb-2" style="width: 400px">
+                        <div class="card">
+                            <img src='<%# Eval("imageLocation") %>' alt='<%# Eval("itemCode") %>' height="210" class=" card-img-top ">
+                            <div class="card-body">
+                                <div class="card-title"><%# Eval("itemName") %> <span class='badge <%# Eval("flairColorClass") %> <%# Eval("flairTextColorClass") %>' onclick="location.href='<%# Eval("flairLink").ToString() == "n/a" ? "" : Eval("flairLink") %>';"><a href='<%# Eval("flairLink").ToString() == "n/a" ? "" : Eval("flairLink") %>' class=' text-decoration-none <%# Eval("flairTextColorClass") %>'><%# Eval("flairText") %></a></span></div>
+                                <div class="card-text">Price: $<%# Eval("price") %></div>
+
+                            </div>
+                            <asp:Button runat="server" Text='Buy' CommandArgument='<%# Eval("itemCode") %>' OnClick="Buy_Click" CssClass='btn btn-primary btn-block col-sm-11 mb-2 mx-auto' />
+                        </div>
+                    </div>
+                </ItemTemplate>
+            </asp:Repeater>
         </div>
     </div>
 

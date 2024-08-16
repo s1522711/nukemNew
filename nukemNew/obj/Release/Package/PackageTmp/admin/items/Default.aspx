@@ -1,8 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/master/MasterPage.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="nukemNew.admin.items.Default" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script src="modal-flair-update.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    
+
     <header class="p-3 sticky-top" style="background-color: #111111;">
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -55,28 +57,132 @@
             <div class="col-sm-3 mb-2" style="width: 80%; min-width: 280px;">
                 <div class="card border-0">
                     <div class="card-body">
-
                         <div class="card-text">
-                            <table class="table table-striped table-hover">
-                                <thead>
+                            <asp:Repeater ID="itemRepeater" runat="server">
+                                <HeaderTemplate>
+                                    <div class="d-flex justify-content-between">
+                                        <h4>Items</h4>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addItemModal">Add Item</button>
+                                    </div>
+                                    <table class="table table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">ID</th>
+                                                <th scope="col">Item Code</th>
+                                                <th scope="col">Item Name</th>
+                                                <th scope="col">Price</th>
+                                                <th scope="col">image Loc</th>
+                                                <th scope="col">Flair Color</th>
+                                                <th scope="col">Flair Text Color</th>
+                                                <th scope="col">Flair Text</th>
+                                                <th scope="col">Flair Link</th>
+                                                <th scope="col">Flair Preview</th>
+                                                <th scope="col">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                </HeaderTemplate>
+                                <ItemTemplate>
                                     <tr>
-                                        <th scope="col">ID</th>
-                                        <th scope="col">Item Code</th>
-                                        <th scope="col">Item Name</th>
-                                        <th scope="col">Price</th>
+                                        <th scope="row"><%# Eval("Id") %></th>
+                                        <th><%# Eval("itemCode") %></th>
+                                        <th><%# Eval("itemName") %></th>
+                                        <th><%# Eval("price") %></th>
+                                        <th><a href='<%# Eval("imageLocation") %>' target="_blank"><%# Eval("imageLocation") %></a></th>
+                                        <th><%# Eval("flairColorClass") %></th>
+                                        <th><%# Eval("flairTextColorClass") %></th>
+                                        <th><%# Eval("flairText") %></th>
+                                        <th><%# Eval("flairLink") %></th>
+                                        <th><span class='badge <%# Eval("flairColorClass") %> <%# Eval("flairTextColorClass") %>' onclick="location.href='<%# Eval("flairLink").ToString() == "n/a" ? "" : Eval("flairLink") %>';"><a href='<%# Eval("flairLink").ToString() == "n/a" ? "" : Eval("flairLink") %>' class=' text-decoration-none <%# Eval("flairTextColorClass") %>'><%# Eval("flairText") %></a></span></th>
+                                        <th>
+                                            <asp:Button runat="server" Text='Delete' CommandArgument='<%# Eval("Id") %>' OnClick="Delete_Click" CssClass='btn btn-danger' CausesValidation="false" formnovalidate="formnovalidate" />
+                                        </th>
                                     </tr>
-                                </thead>
-                                <tbody class="table-group-divider" runat="server" id="userTableBody">
-                                    <tr>
-                                        <th scope="row" colspan="4">rip</th>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                </ItemTemplate>
+                                <FooterTemplate>
+                                    </tbody>
+                                    </table>
+   
+                                </FooterTemplate>
+                            </asp:Repeater>
                         </div>
                     </div>
                 </div>
-            </div>
 
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="addItemModal" tabindex="-1" aria-labelledby="addItemModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="addItemModalLabel">Add New Item</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-row form-floating mb-3">
+                        <input required id="itemCode" name="itemCode" type="text" class="form-control mb-2" placeholder="Item Code" />
+                        <label for="itemCode">Item Code</label>
+                    </div>
+                    <div class="form-row form-floating mb-3">
+                        <input required id="itemName" name="itemName" type="text" class="form-control mb-2" placeholder="Item Name" />
+                        <label for="itemName">Item Name</label>
+                    </div>
+                    <div class="form-row form-floating mb-3">
+                        <input required id="itemPrice" name="itemPrice" type="number" class="form-control mb-2" placeholder="Item Price" />
+                        <label for="itemPrice">Item Price</label>
+                    </div>
+                    <div class="input-group mb-3">
+                        <asp:FileUpload ID="imageUpload" runat="server" CssClass="form-control" accept="image/png,image/jpeg" />
+                    </div>
+                    <div class="form-floating mb-3">
+                        <select required onchange="updateFlair()" class="form-select" aria-label="Flair color class selection" id="flairColor" name="flairColor">
+                            <option selected value="primary">Primary</option>
+                            <option value="secondary">Secondary</option>
+                            <option value="success">Success</option>
+                            <option value="danger">Danger</option>
+                            <option value="warning">Warning</option>
+                            <option value="info">Info</option>
+                            <option value="light">Light</option>
+                            <option value="dark">Dark</option>
+                        </select>
+                        <label for="flairColor" class="form-label">Flair Color</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <select required onchange="updateFlair()" class="form-select" aria-label="Flair text color class selection" id="flairTextColor" name="flairTextColor">
+                            <option value="primary">Primary</option>
+                            <option value="secondary">Secondary</option>
+                            <option value="success">Success</option>
+                            <option value="danger">Danger</option>
+                            <option value="warning">Warning</option>
+                            <option value="info">Info</option>
+                            <option selected value="light">Light</option>
+                            <option value="dark">Dark</option>
+                        </select>
+                        <label for="flairTextColor" class="form-label">Flair Text Color</label>
+                    </div>
+                    <div class="form-row form-floating mb-3">
+                        <input required oninput="updateFlair()" id="flairText" maxlength="50" name="flairText" type="text" class="form-control mb-2" placeholder="Flair Text" />
+                        <label for="flairText">Flair Text</label>
+                    </div>
+                    <div class="form-row form-floating mb-3">
+                        <input id="flairLink" name="flairLink" type="text" class="form-control mb-2" placeholder="Flair Link" />
+                        <label for="flairLink">Flair Link</label>
+                    </div>
+
+                    <div class="alert alert-danger" role="alert" id="errorMessage" runat="server">
+                        ERROR: Invalid username or password.
+                    </div>
+
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <h6>Flair preview: <span id="previewFlair" class="badge text-bg-primary text-light">Flair</span></h6>
+                    <!-- <button type="submit" class="btn btn-primary">Add</button> -->
+                    <asp:Button runat="server" CausesValidation="true" Text="Add" OnClick="Create_click" CssClass="btn btn-primary" />
+                </div>
+            </div>
         </div>
     </div>
 </asp:Content>

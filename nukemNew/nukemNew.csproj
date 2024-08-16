@@ -67,6 +67,7 @@
     <Content Include="about\default.aspx" />
     <Content Include="admin\default.aspx" />
     <Content Include="admin\items\Default.aspx" />
+    <Content Include="admin\items\modal-flair-update.js" />
     <Content Include="admin\orders\default.aspx" />
     <Content Include="admin\users\default.aspx" />
     <Content Include="android-chrome-192x192.png" />

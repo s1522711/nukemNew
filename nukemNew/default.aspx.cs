@@ -21,6 +21,20 @@ namespace nukemNew
             productsDiv.Visible = (bool)Session["login"];
             notLoggedinDiv.Visible = !(bool)Session["login"];
             admin.Visible = (bool)Session["admin"] && (bool)Session["login"];
+
+            if (!IsPostBack)
+            {
+                // Get all items from the database and display them in the repeater (table)
+                // (See nukemNew/admin/items/Default.aspx.cs for the same functionality)
+                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conStr"].ConnectionString);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM tblItems", con);
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                itemRepeater.DataSource = dt;
+                itemRepeater.DataBind();
+            }
+
         }
 
         protected void logoutBtn_Click(object sender, EventArgs e)
@@ -76,6 +90,13 @@ namespace nukemNew
         protected void littleBoyBtn_Click(object sender, EventArgs e)
         {
             Session["selectedProduct"] = "LittleBoy";
+            Response.Redirect("~/checkout");
+        }
+
+        protected void Buy_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            Session["selectedProduct"] = btn.CommandArgument.ToString();
             Response.Redirect("~/checkout");
         }
 

@@ -2,6 +2,20 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script src="modal-flair-update.js"></script>
+    <!-- hide arrows in number input type -->
+    <style>
+        /* Chrome, Safari, Edge, Opera - hide arrows in number input type */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox - hide arrows in number input type */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -134,8 +148,9 @@
                         <input required id="itemPrice" name="itemPrice" type="number" class="form-control mb-2" placeholder="Item Price" />
                         <label for="itemPrice">Item Price</label>
                     </div>
-                    <div class="input-group mb-3">
-                        <asp:FileUpload ID="imageUpload" runat="server" CssClass="form-control" accept="image/png,image/jpeg" />
+                    <div class="input-row input-group mb-3">
+                        <asp:FileUpload ID="imageUpload" required runat="server" CssClass="form-control" accept="image/png,image/jpeg" />
+                        <label class="input-group-text" for="imageUpload">Item Image</label>
                     </div>
                     <div class="form-floating mb-3">
                         <select required onchange="updateFlair()" class="form-select" aria-label="Flair color class selection" id="flairColor" name="flairColor">

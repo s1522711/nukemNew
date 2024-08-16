@@ -87,7 +87,7 @@
                                         <th scope="row"><%# Eval("Id") %></th>
                                         <th><%# Eval("itemCode") %></th>
                                         <th><%# Eval("itemName") %></th>
-                                        <th><%# Eval("price") %></th>
+                                        <th>$<%# Eval("price") %></th>
                                         <th><a href='<%# Eval("imageLocation") %>' target="_blank"><%# Eval("imageLocation") %></a></th>
                                         <th><%# Eval("flairColorClass") %></th>
                                         <th><%# Eval("flairTextColorClass") %></th>

@@ -378,6 +378,11 @@ namespace nukemNew.admin.items
                     return;
                 }
 
+                if (flairLink == "")
+                {
+                    flairLink = "n/a";
+                }
+
                 string query = "INSERT INTO tblItems (itemCode, itemName, price, imageLocation, flairColorClass, flairTextColorClass, flairText, flairLink) VALUES ('" + itemCode + "', '" + itemName + "', '" + price + "', '" + imageLocation + "', '" + flairColorClass + "', '" + flairTextColorClass + "', '" + flairText + "', '" + flairLink + "')";
                 cmd = new SqlCommand(query, con);
                 con.Open();

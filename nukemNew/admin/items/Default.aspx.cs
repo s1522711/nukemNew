@@ -40,7 +40,7 @@ namespace nukemNew.admin.items
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (false && (!(bool)Session["login"] || !(bool)Session["admin"]))
+            if (!(bool)Session["login"] || !(bool)Session["admin"])
             {
                 Response.Redirect("/intruder/");
             }

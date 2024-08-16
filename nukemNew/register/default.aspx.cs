@@ -144,20 +144,26 @@ namespace nukemNew.register
                 {
                     SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conStr"].ConnectionString);
 
-                    string SQLStr = "SELECT * FROM tblUsers";
+                    string SQLStr = "SELECT * FROM tblUsers WHERE username = @username";
                     SqlCommand cmd = new SqlCommand(SQLStr, con);
+                    cmd.Parameters.AddWithValue("@username", Request.Form["usernameInput"]);
 
                     DataSet ds = new DataSet();
 
                     SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                     adapter.Fill(ds, "users");
 
-                    if (FindAndCheckUser(Request.Form["usernameInput"], ds.Tables["users"]) != -1)
+                    if (ds.Tables["users"].Rows.Count > 0)
                     {
                         errorMessage.InnerText = "Username already exists!";
                         errorMessage.Visible = true;
                         return;
                     }
+
+                    SQLStr = "SELECT * FROM tblUsers";
+                    cmd = new SqlCommand(SQLStr, con);
+                    adapter = new SqlDataAdapter(cmd);
+                    adapter.Fill(ds, "users");
 
                     DataRow dr = ds.Tables["users"].NewRow();
                     dr["username"] = Request.Form["usernameInput"];

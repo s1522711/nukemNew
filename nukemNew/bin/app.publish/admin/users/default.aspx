@@ -7,7 +7,7 @@
     <header class="p-3 sticky-top" style="background-color: #111111;">
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                <a href="../" class="d-flex align-items-center mb-3 mb-md-0 text-white text-decoration-none">
+                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 text-white text-decoration-none">
                     <span class="fs-4">The Nukem Store</span>
                 </a>
 
@@ -58,22 +58,40 @@
                     <div class="card-body">
 
                         <div class="card-text">
-                            <table class="table table-striped table-hover">
-                                <thead>
+                            <asp:Repeater ID="userRepeater" runat="server">
+                                <HeaderTemplate>
+                                    <table class="table table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">User ID</th>
+                                                <th scope="col">Username</th>
+                                                <th scope="col">Email</th>
+                                                <th scope="col">Password</th>
+                                                <th scope="col">Admin</th>
+                                                <th scope="col">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                </HeaderTemplate>
+                                <ItemTemplate>
                                     <tr>
-                                        <th scope="col">UID</th>
-                                        <th scope="col">Username</th>
-                                        <th scope="col">Email</th>
-                                        <th scope="col">PassHash</th>
-                                        <th scode="col">Is Admin</th>
+                                        <th scope="row"><%# Eval("userId") %></th>
+                                        <th><%# Eval("username") %></th>
+                                        <th><%# Eval("email") %></th>
+                                        <th><%# Eval("password") %></th>
+                                        <th><%# (bool)Eval("admin") ? "Yes" : "No" %></th>
+                                        <th>
+                                            <asp:Button runat="server" Text='<%# (bool)Eval("admin") ? "Remove Admin" : "Make Admin" %>' CommandArgument='<%# Eval("userId") %>' OnClick="Admin_Click" CssClass='<%# (bool)Eval("admin") ? "btn btn-danger" : "btn btn-success" %>' />
+                                        </th>
                                     </tr>
-                                </thead>
-                                <tbody class="table-group-divider" runat="server" id="userTableBody">
-                                    <tr>
-                                        <th scope="row" colspan="5">rip</th>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                </ItemTemplate>
+                                <FooterTemplate>
+                                    </tbody>
+        </table>
+   
+                                </FooterTemplate>
+                            </asp:Repeater>
+
                         </div>
                     </div>
                 </div>

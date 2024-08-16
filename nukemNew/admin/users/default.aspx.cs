@@ -12,54 +12,29 @@ namespace nukemNew.admin.users
 {
     public partial class _default : System.Web.UI.Page
     {
-        /*
-         * Builds the main body of the users table
-         * input: DataTable dt
-         * output: html table body string
-         */
-        protected string buildUsersTable(DataTable dt)
-        {
-            string table = "";
-            for (int i = 0; i < dt.Rows.Count; i++)
-            {
-                table += "<tr>";
-                table += "<th scope=\"row\">" + dt.Rows[i]["userId"].ToString() + "</th>";
-                table += "<th>" + dt.Rows[i]["username"].ToString() + "</th>";
-                table += "<th>" + dt.Rows[i]["email"].ToString() + "</th>";
-                table += "<th>" + dt.Rows[i]["password"].ToString() + "</th>";
-                if ((bool)dt.Rows[i]["admin"])
-                {
-                    table += "<th>Yes</th>";
-                }
-                else
-                {
-                    table += "<th>No</th>";
-                }
-                table += "</tr>";
-            }
-            return table;
-        }
-
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!(bool)Session["login"] || !(bool)Session["admin"])
-            {
-                Response.Redirect("/intruder/");
-            }
-
             usernameStrDisplay.Visible = (bool)Session["login"];
             logoutBtnDiv.Visible = (bool)Session["login"];
             loginRegisterBtn.Visible = !(bool)Session["login"];
             aboutBtn.Visible = (bool)Session["login"];
             admin.Visible = (bool)Session["admin"] && (bool)Session["login"];
 
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conStr"].ConnectionString);
-            SqlCommand cmd = new SqlCommand("SELECT * FROM tblUsers", con);
-            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            adapter.Fill(dt);
-            string table = buildUsersTable(dt);
-            userTableBody.InnerHtml = table;
+            if (!IsPostBack)
+            {
+                if (!(bool)Session["login"] || !(bool)Session["admin"])
+                {
+                    Response.Redirect("/intruder/");
+                }
+
+                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conStr"].ConnectionString);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM tblUsers", con);
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                userRepeater.DataSource = dt;
+                userRepeater.DataBind();
+            }
         }
 
         protected void logoutBtn_Click(object sender, EventArgs e)
@@ -68,6 +43,23 @@ namespace nukemNew.admin.users
             Session["admin"] = false;
             Session["username"] = "Guest";
             Response.Redirect("/");
+        }
+
+        protected void Admin_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            int userId = int.Parse(btn.CommandArgument);
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conStr"].ConnectionString);
+            SqlCommand cmd = new SqlCommand("UPDATE tblUsers SET admin = ~admin WHERE userId = @userId", con);
+            cmd.Parameters.AddWithValue("@userId", userId);
+            con.Open();
+            cmd.ExecuteNonQuery();
+            con.Close();
+            if (userId == int.Parse(Session["userId"].ToString()))
+            {
+                Session["admin"] = !(bool)Session["admin"];
+            }
+            Response.Redirect("/admin/users/");
         }
     }
 }

@@ -6,7 +6,7 @@
     <header class="p-3 sticky-top" style="background-color: #111111;">
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                <a href="../" class="d-flex align-items-center mb-3 mb-md-0 text-white text-decoration-none">
+                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 text-white text-decoration-none">
                     <span class="fs-4">The Nukem Store</span>
                 </a>
 

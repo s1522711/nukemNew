@@ -741,16 +741,14 @@ namespace nukemNew.checkout
         protected string GetProductPrice(string product)
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conStr"].ConnectionString);
-            SqlCommand cmd = new SqlCommand("SELECT * FROM tblItems", con);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM tblItems WHERE itemCode = @itemCode", con);
+            cmd.Parameters.AddWithValue("@itemCode", product);
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             adapter.Fill(dt);
-            for (int i = 0; i < dt.Rows.Count; i++)
+            if (dt.Rows.Count > 0)
             {
-                if (dt.Rows[i]["itemCode"].ToString() == product)
-                {
-                    return dt.Rows[i]["price"].ToString();
-                }
+                return dt.Rows[0]["price"].ToString();
             }
             return "0";
         }
@@ -758,16 +756,14 @@ namespace nukemNew.checkout
         protected string GetProductName(string product)
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conStr"].ConnectionString);
-            SqlCommand cmd = new SqlCommand("SELECT * FROM tblItems", con);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM tblItems WHERE itemCode = @itemCode", con);
+            cmd.Parameters.AddWithValue("@itemCode", product);
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             adapter.Fill(dt);
-            for (int i = 0; i < dt.Rows.Count; i++)
+            if (dt.Rows.Count > 0)
             {
-                if (dt.Rows[i]["itemCode"].ToString() == product)
-                {
-                    return dt.Rows[i]["itemName"].ToString();
-                }
+                return dt.Rows[0]["itemName"].ToString();
             }
             return "N/A";
         }

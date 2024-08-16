@@ -15,23 +15,6 @@ namespace nukemNew.login
     public partial class _default : System.Web.UI.Page
     {
         /*
-         * this function finds the user in the database and checks if the password is correct
-         * input: username, password, dataset
-         * output: index of the user in the dataset, -1 if not found
-         */
-        protected int FindAndCheckUser(string username, string password, DataTable dt)
-        {
-            for (int i = 0; i < dt.Rows.Count; i++)
-            {
-                if (dt.Rows[i]["username"].ToString() == username && dt.Rows[i]["password"].ToString() == password)
-                {
-                    return i;
-                }
-            }
-            return -1;
-        }
-
-        /*
          * this function computes the SHA256 hash of a string
          * input: string
          * output: SHA256 hash of the string
@@ -67,25 +50,19 @@ namespace nukemNew.login
             {
                 // connect to the database and get the user data from the database
                 SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conStr"].ConnectionString);
-                SqlCommand cmd = new SqlCommand("SELECT userId, username, password, admin FROM tblUsers", con);
+                SqlCommand cmd = new SqlCommand("SELECT userId, username, password, admin FROM tblUsers WHERE username = @username AND password = @password", con);
+                cmd.Parameters.AddWithValue("@username", Request.Form["username"]);
+                cmd.Parameters.AddWithValue("@password", ComputeSha256Hash(Request.Form["password"]));
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
-                if (dt != null)
-                {
-                    Session["username"] = Request.Form["username"];
-                    Session["login"] = true;
-                    Session["admin"] = (bool)dt.Rows[0]["admin"];
-                }
 
-                // check if the user exists and the password is correct
-                int userIndex = FindAndCheckUser(Request.Form["username"], ComputeSha256Hash(Request.Form["password"]), dt);
-                if (userIndex != -1) // if the user exists and the password is correct
+                if (dt.Rows.Count > 0)
                 {
                     Session["username"] = Request.Form["username"]; // store the username in the session
                     Session["login"] = true; // set the login session variable to true
-                    Session["admin"] = (bool)dt.Rows[userIndex]["admin"]; // set the admin session variable to the value from the database
-                    Session["userId"] = dt.Rows[userIndex]["userId"].ToString(); // set the userId session variable to the value from the database
+                    Session["admin"] = (bool)dt.Rows[0]["admin"]; // set the admin session variable to the value from the database
+                    Session["userId"] = dt.Rows[0]["userId"].ToString(); // set the userId session variable to the value from the database
                                                                       //errorMessage.Visible = false;
                     errorMessage.InnerText = ""; // clear the error message
                     Response.Redirect("../"); // redirect to the home page

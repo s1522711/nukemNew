@@ -41,8 +41,9 @@ namespace nukemNew.checkout.confirmed
 
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conStr"].ConnectionString);
 
-            string SQLStr = "SELECT * FROM tblOrders";
+            string SQLStr = $"SELECT * FROM tblOrders WHERE Id = @orderId";
             SqlCommand cmd = new SqlCommand(SQLStr, con);
+            cmd.Parameters.AddWithValue("@orderId", orderId);
 
             DataSet ds = new DataSet();
 
@@ -53,14 +54,13 @@ namespace nukemNew.checkout.confirmed
             adapter = new SqlDataAdapter(cmd);
             adapter.Fill(ds, "users");
 
-            int orderIndex = FindOrderIndex(ds, orderId);
-            if (orderIndex == -1)
+            if (ds.Tables["orders"].Rows.Count == 0)
             {
                 orderData.InnerHtml = "<br /><p class=\"lead\">No orders found.</p>";
                 return;
             }
 
-            if (ds.Tables["orders"].Rows[orderIndex]["userId"].ToString() != Session["userId"].ToString() && !(bool)Session["admin"])
+            if (ds.Tables["orders"].Rows[0]["userId"].ToString() != Session["userId"].ToString() && !(bool)Session["admin"])
             {
                 Response.Redirect("/intruder/");
                 return;
@@ -70,13 +70,13 @@ namespace nukemNew.checkout.confirmed
 
             orderData.InnerHtml = "<br /><p class=\"lead\">Your order number is: <strong>#";
             //orderData.InnerHtml += ds.Tables["orders"].Rows[ds.Tables["orders"].Rows.Count-1]["Id"].ToString();
-            orderData.InnerHtml += ds.Tables["orders"].Rows[orderIndex]["Id"].ToString();
+            orderData.InnerHtml += ds.Tables["orders"].Rows[0]["Id"].ToString();
             orderData.InnerHtml += "</strong></p>";
             orderData.InnerHtml += "<p class=\"lead\">You purchased: <strong>";
-            orderData.InnerHtml += ds.Tables["orders"].Rows[orderIndex]["itemName"].ToString();
+            orderData.InnerHtml += ds.Tables["orders"].Rows[0]["itemName"].ToString();
             orderData.InnerHtml += "</strong></p>";
             orderData.InnerHtml += "<p class=\"lead\">Your total was: <strong>$";
-            orderData.InnerHtml += ds.Tables["orders"].Rows[orderIndex]["price"].ToString();
+            orderData.InnerHtml += ds.Tables["orders"].Rows[0]["price"].ToString();
             orderData.InnerHtml += "</strong></p>";
         }
     }

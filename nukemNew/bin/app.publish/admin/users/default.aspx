@@ -60,6 +60,9 @@
                         <div class="card-text">
                             <asp:Repeater ID="userRepeater" runat="server">
                                 <HeaderTemplate>
+                                    <div class="d-flex justify-content-between">
+                                        <h4>Users</h4>
+                                    </div>
                                     <table class="table table-striped table-hover">
                                         <thead>
                                             <tr>
@@ -86,7 +89,7 @@
                                     </tr>
                                 </ItemTemplate>
                                 <FooterTemplate>
-                                        </tbody>
+                                    </tbody>
                                     </table>
    
                                 </FooterTemplate>

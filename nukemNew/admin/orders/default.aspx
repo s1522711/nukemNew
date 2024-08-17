@@ -58,27 +58,52 @@
                     <div class="card-body">
 
                         <div class="card-text">
-                            <table class="table table-striped table-hover">
-                                <thead>
+                            <asp:Repeater ID="orderRepeater" runat="server">
+                                <HeaderTemplate>
+                                    <div class="d-flex justify-content-between">
+                                        <h4>Orders</h4>
+                                    </div>
+                                    <table class="table table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">ID</th>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Email</th>
+                                                <th scope="col">Product</th>
+                                                <th scope="col">Price</th>
+                                                <th scope="col">Country</th>
+                                                <th scode="col">Address</th>
+                                                <th scope="col">Zip</th>
+                                                <th scope="col">Last 4 CC</th>
+                                                <th scope="col">UID</th>
+                                                <th scope="col">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                </HeaderTemplate>
+                                <ItemTemplate>
                                     <tr>
-                                        <th scope="col">ID</th>
-                                        <th scope="col">Name</th>
-                                        <th scope="col">Email</th>
-                                        <th scope="col">Product</th>
-                                        <th scope="col">Price</th>
-                                        <th scope="col">Country</th>
-                                        <th scode="col">Address</th>
-                                        <th scope="col">Zip</th>
-                                        <th scope="col">Last 4 CC</th>
-                                        <th scope="col">UID</th>
+                                        <th scope="row"><%# Eval("Id") %></th>
+                                        <th><%# Eval("name") %></th>
+                                        <th><%# Eval("email") %></th>
+                                        <th><%# Eval("itemName") %></th>
+                                        <th>$<%# Eval("price") %></th>
+                                        <th><%# Eval("country") %></th>
+                                        <th><%# Eval("address") %></th>
+                                        <th><%# Eval("zip") %></th>
+                                        <th><%# Eval("last4cc") %></th>
+                                        <th><%# Eval("userId") %></th>
+                                        <th>
+                                            <asp:Button runat="server" Text='Delete' CommandArgument='<%# Eval("Id") %>' OnClick="Delete_Click" CssClass='btn btn-danger' />
+                                        </th>
                                     </tr>
-                                </thead>
-                                <tbody class="table-group-divider" runat="server" id="orderTableBody">
-                                    <tr>
-                                        <th scope="row" colspan="8">rip</th>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                </ItemTemplate>
+                                <FooterTemplate>
+                                    </tbody>
+                                    </table>
+   
+                                </FooterTemplate>
+                            </asp:Repeater>
                         </div>
                     </div>
                 </div>

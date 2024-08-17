@@ -51,13 +51,16 @@ namespace nukemNew.admin.orders
             aboutBtn.Visible = (bool)Session["login"];
             admin.Visible = (bool)Session["admin"] && (bool)Session["login"];
 
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conStr"].ConnectionString);
-            SqlCommand cmd = new SqlCommand("SELECT * FROM tblOrders", con);
-            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            adapter.Fill(dt);
-            string table = buildOrdersTable(dt);
-            orderTableBody.InnerHtml = table;
+            if (!IsPostBack)
+            {
+                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conStr"].ConnectionString);
+                SqlCommand cmd = new SqlCommand("SELECT * FROM tblOrders", con);
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                orderRepeater.DataSource = dt;
+                orderRepeater.DataBind();
+            }
         }
 
         protected void logoutBtn_Click(object sender, EventArgs e)
@@ -66,6 +69,21 @@ namespace nukemNew.admin.orders
             Session["admin"] = false;
             Session["username"] = "Guest";
             Response.Redirect("/");
+        }
+
+        protected void Delete_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            int orderId = int.Parse(btn.CommandArgument);
+            // Delete the order from the database
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conStr"].ConnectionString);
+            string SQLStr = "DELETE FROM tblOrders WHERE Id = @orderId";
+            SqlCommand cmd = new SqlCommand(SQLStr, con);
+            cmd.Parameters.AddWithValue("@orderId", orderId);
+            con.Open();
+            cmd.ExecuteNonQuery();
+            con.Close();
+            Response.Redirect("/admin/orders/");
         }
     }
 }

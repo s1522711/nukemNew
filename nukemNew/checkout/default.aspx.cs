@@ -33,7 +33,7 @@ namespace nukemNew.checkout
         {
             if (!(bool)Session["login"])
             {
-                Response.Redirect("/intruder/");
+                Response.Redirect("/");
             }
             errorMessage.Visible = false;
 
@@ -200,7 +200,8 @@ namespace nukemNew.checkout
 
                     SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                     adapter.Fill(ds, "users");
-                    int userId = FindAndCheckUser(Session["username"].ToString(), ds.Tables["users"]);
+                    //int userId = FindAndCheckUser(Session["username"].ToString(), ds.Tables["users"]);
+                    int userId = Convert.ToInt32(Session["userId"]);
 
                     SQLStr = "SELECT * FROM tblOrders";
                     cmd = new SqlCommand(SQLStr, con);
@@ -217,8 +218,8 @@ namespace nukemNew.checkout
                     dr["zip"] = Request.Form["zip"];
                     dr["last4cc"] = Request.Form["cc-number"].Substring(Request.Form["cc-number"].Length - 4);
                     dr["userId"] = userId;
-                    dr["itemName"] = GetProductName(Session["selectedProduct"].ToString());
-                    dr["price"] = GetProductPrice(Session["selectedProduct"].ToString());
+                    dr["itemName"] = GetProductName();
+                    dr["price"] = GetProductPrice();
                     ds.Tables["orders"].Rows.Add(dr);
 
                     SqlCommandBuilder cb = new SqlCommandBuilder(adapter);
@@ -738,11 +739,16 @@ namespace nukemNew.checkout
             }
         }
 
-        protected string GetProductPrice(string product)
+        protected string GetProductPrice()
         {
+            string itemCode = Request.QueryString["itemCode"] != null ? Request.QueryString["itemCode"] : "";
+            if (itemCode == "")
+            {
+                Response.Redirect("/");
+            }
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conStr"].ConnectionString);
             SqlCommand cmd = new SqlCommand("SELECT * FROM tblItems WHERE itemCode = @itemCode", con);
-            cmd.Parameters.AddWithValue("@itemCode", product);
+            cmd.Parameters.AddWithValue("@itemCode", itemCode);
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             adapter.Fill(dt);
@@ -750,14 +756,20 @@ namespace nukemNew.checkout
             {
                 return dt.Rows[0]["price"].ToString();
             }
+            Response.Redirect("/");
             return "0";
         }
 
-        protected string GetProductName(string product)
+        protected string GetProductName()
         {
+            string itemCode = Request.QueryString["itemCode"] != null ? Request.QueryString["itemCode"] : "";
+            if (itemCode == "")
+            {
+                Response.Redirect("/");
+            }
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conStr"].ConnectionString);
             SqlCommand cmd = new SqlCommand("SELECT * FROM tblItems WHERE itemCode = @itemCode", con);
-            cmd.Parameters.AddWithValue("@itemCode", product);
+            cmd.Parameters.AddWithValue("@itemCode", itemCode);
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
             adapter.Fill(dt);
@@ -765,6 +777,7 @@ namespace nukemNew.checkout
             {
                 return dt.Rows[0]["itemName"].ToString();
             }
+            Response.Redirect("/");
             return "N/A";
         }
     }

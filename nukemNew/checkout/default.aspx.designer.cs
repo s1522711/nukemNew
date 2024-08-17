@@ -22,19 +22,5 @@ namespace nukemNew.checkout
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl errorMessage;
-
-        /// <summary>
-        /// Master property.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated property.
-        /// </remarks>
-        public new nukemNew.master.MasterPage Master
-        {
-            get
-            {
-                return ((nukemNew.master.MasterPage)(base.Master));
-            }
-        }
     }
 }

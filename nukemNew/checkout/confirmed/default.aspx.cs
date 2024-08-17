@@ -49,8 +49,9 @@ namespace nukemNew.checkout.confirmed
 
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             adapter.Fill(ds, "orders");
-            SQLStr = "SELECT * FROM tblUsers";
+            SQLStr = "SELECT * FROM tblUsers WHERE userId = @userId";
             cmd = new SqlCommand(SQLStr, con);
+            cmd.Parameters.AddWithValue("@userId", Session["userId"]);
             adapter = new SqlDataAdapter(cmd);
             adapter.Fill(ds, "users");
 

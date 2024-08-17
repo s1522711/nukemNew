@@ -23,10 +23,10 @@
                     <ul class="list-group mb-3">
                         <li class="list-group-item d-flex justify-content-between lh-sm">
                             <div>
-                                <h6 class="my-0"><%=GetProductName(Session["selectedProduct"].ToString()) %></h6>
+                                <h6 class="my-0"><%=GetProductName() %></h6>
                                 <!--<small class="text-body-secondary">Brief description</small>-->
                             </div>
-                            <span class="text-body-secondary">$<%=GetProductPrice(Session["selectedProduct"].ToString()) %></span>
+                            <span class="text-body-secondary">$<%=GetProductPrice() %></span>
                         </li>
                     </ul>
 
@@ -361,7 +361,7 @@
 
                         <div class="col-md-6">
                             <label for="cc-number" class="form-label">Credit card number</label>
-                            <input type="text" class="form-control" id="cc-number" name="cc-number" placeholder="" required>
+                            <input type="text" class="form-control" id="cc-number" name="cc-number" placeholder="" maxlength="16" required>
                             <div class="invalid-feedback">
                                 Credit card number is required
                             </div>

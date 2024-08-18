@@ -167,7 +167,7 @@
                         <div class="card">
                             <img src='<%# Eval("imageLocation") %>' alt='<%# Eval("itemCode") %>' height="210" class=" card-img-top ">
                             <div class="card-body">
-                                <div class="card-title"><%# Eval("itemName") %> <span class='badge <%# Eval("flairColorClass") %> <%# Eval("flairTextColorClass") %>' onclick="location.href='<%# Eval("flairLink").ToString() == "n/a" ? "" : Eval("flairLink") %>';"><a href='<%# Eval("flairLink").ToString() == "n/a" ? "" : Eval("flairLink") %>' class=' text-decoration-none <%# Eval("flairTextColorClass") %>'><%# Eval("flairText") %></a></span></div>
+                                <div class="card-title"><%# Eval("itemName") %> <span class='badge <%# Eval("flairColorClass") %> <%# Eval("flairTextColorClass") %>' onclick="location.href='<%# Eval("flairLink").ToString() == "n/a" ? "#" : Eval("flairLink") %>';"><a href='<%# Eval("flairLink").ToString() == "n/a" ? "#" : Eval("flairLink") %>' class=' text-decoration-none <%# Eval("flairTextColorClass") %>'><%# Eval("flairText") %></a></span></div>
                                 <div class="card-text">Price: $<%# Eval("price") %></div>
 
                             </div>

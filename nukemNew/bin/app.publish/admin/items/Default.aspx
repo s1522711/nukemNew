@@ -107,7 +107,7 @@
                                         <th><%# Eval("flairTextColorClass") %></th>
                                         <th><%# Eval("flairText") %></th>
                                         <th><%# Eval("flairLink") %></th>
-                                        <th><span class='badge <%# Eval("flairColorClass") %> <%# Eval("flairTextColorClass") %>' onclick="location.href='<%# Eval("flairLink").ToString() == "n/a" ? "" : Eval("flairLink") %>';"><a href='<%# Eval("flairLink").ToString() == "n/a" ? "" : Eval("flairLink") %>' class=' text-decoration-none <%# Eval("flairTextColorClass") %>'><%# Eval("flairText") %></a></span></th>
+                                        <th><span class='badge <%# Eval("flairColorClass") %> <%# Eval("flairTextColorClass") %>' onclick="location.href='<%# Eval("flairLink").ToString() == "n/a" ? "#" : Eval("flairLink") %>';"><a href='<%# Eval("flairLink").ToString() == "n/a" ? "#" : Eval("flairLink") %>' class=' text-decoration-none <%# Eval("flairTextColorClass") %>'><%# Eval("flairText") %></a></span></th>
                                         <th>
                                             <asp:Button runat="server" Text='Delete' CommandArgument='<%# Eval("Id") %>' OnClick="Delete_Click" CssClass='btn btn-danger' CausesValidation="false" formnovalidate="formnovalidate" />
                                         </th>
@@ -184,7 +184,7 @@
                     </div>
                     <div class="form-row form-floating mb-3">
                         <input id="flairLink" name="flairLink" type="text" class="form-control mb-2" placeholder="Flair Link" />
-                        <label for="flairLink">Flair Link</label>
+                        <label for="flairLink">Flair Link (optional)</label>
                     </div>
 
                     <div class="alert alert-danger" role="alert" id="errorMessage" runat="server">

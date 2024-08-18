@@ -61,5 +61,18 @@ namespace nukemNew.admin.users
             }
             Response.Redirect("/admin/users/");
         }
+
+        protected void Delete_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            int userId = int.Parse(btn.CommandArgument);
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["conStr"].ConnectionString);
+            SqlCommand cmd = new SqlCommand("DELETE FROM tblUsers WHERE userId = @userId", con);
+            cmd.Parameters.AddWithValue("@userId", userId);
+            con.Open();
+            cmd.ExecuteNonQuery();
+            con.Close();
+            Response.Redirect("/admin/users/");
+        }
     }
 }

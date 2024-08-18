@@ -85,6 +85,7 @@
                                         <th><%# (bool)Eval("admin") ? "Yes" : "No" %></th>
                                         <th>
                                             <asp:Button runat="server" Text='<%# (bool)Eval("admin") ? "Remove Admin" : "Make Admin" %>' CommandArgument='<%# Eval("userId") %>' OnClick="Admin_Click" CssClass='<%# (bool)Eval("admin") ? "btn btn-danger" : "btn btn-success" %>' />
+                                            <asp:Button runat="server" Text="Delete" CommandArgument='<%# Eval("userId") %>' OnClick="Delete_Click" CssClass="btn btn-outline-danger" />
                                         </th>
                                     </tr>
                                 </ItemTemplate>

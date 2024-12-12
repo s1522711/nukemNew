@@ -97,7 +97,7 @@ namespace nukemNew
         {
             Button btn = (Button)sender;
             Session["selectedProduct"] = btn.CommandArgument.ToString();
-            Response.Redirect($"~/checkout?itemCode={btn.CommandArgument.ToString()}");
+            Response.Redirect($"~/productPage?itemCode={btn.CommandArgument.ToString()}");
         }
 
         public string GetProductPrice(string product)

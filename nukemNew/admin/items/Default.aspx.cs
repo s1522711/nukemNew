@@ -243,6 +243,7 @@ namespace nukemNew.admin.items
             string itemCode = Request.Form["itemCode"];
             string itemName = Request.Form["itemName"];
             string price = Request.Form["itemPrice"];
+            string description = Request.Form["description"];
             string imageLocation = "tbd";
             string flairColorClass = $"text-bg-{Request.Form["flairColor"]}";
             string flairTextColorClass = $"text-{Request.Form["flairTextColor"]}";
@@ -292,6 +293,11 @@ namespace nukemNew.admin.items
             else if (price.Length > 50)
             {
                 errorMessage.InnerText = "Price is too long!";
+                errorMessage.Visible = true;
+            }
+            else if (description.Length > 1000)
+            {
+                errorMessage.InnerText = "Description is too long!";
                 errorMessage.Visible = true;
             }
             else if (!imageUpload.HasFile)
@@ -383,8 +389,24 @@ namespace nukemNew.admin.items
                     flairLink = "n/a";
                 }
 
-                string query = "INSERT INTO tblItems (itemCode, itemName, price, imageLocation, flairColorClass, flairTextColorClass, flairText, flairLink) VALUES ('" + itemCode + "', '" + itemName + "', '" + price + "', '" + imageLocation + "', '" + flairColorClass + "', '" + flairTextColorClass + "', '" + flairText + "', '" + flairLink + "')";
+                if (description == "")
+                {
+                    description = null;
+                }
+
+                //string query = "INSERT INTO tblItems (itemCode, itemName, price, description, imageLocation, flairColorClass, flairTextColorClass, flairText, flairLink) VALUES ('" + itemCode + "', '" + itemName + "', '" + price + "', '" + description + "', '" + imageLocation + "', '" + flairColorClass + "', '" + flairTextColorClass + "', '" + flairText + "', '" + flairLink + "')";
+                // create the sql command
+                string query = "INSERT INTO tblItems (itemCode, itemName, price, imageLocation, flairColorClass, flairTextColorClass, flairText, flairLink, description) VALUES (@itemCode, @itemName, @price, @imageLocation, @flairColorClass, @flairTextColorClass, @flairText, @flairLink, @description)";
                 cmd = new SqlCommand(query, con);
+                cmd.Parameters.AddWithValue("@itemCode", itemCode);
+                cmd.Parameters.AddWithValue("@itemName", itemName);
+                cmd.Parameters.AddWithValue("@price", price);
+                cmd.Parameters.AddWithValue("@imageLocation", imageLocation);
+                cmd.Parameters.AddWithValue("@flairColorClass", flairColorClass);
+                cmd.Parameters.AddWithValue("@flairTextColorClass", flairTextColorClass);
+                cmd.Parameters.AddWithValue("@flairText", flairText);
+                cmd.Parameters.AddWithValue("@flairLink", flairLink);
+                cmd.Parameters.AddWithValue("@description", description);
                 con.Open();
                 cmd.ExecuteNonQuery();
                 con.Close();

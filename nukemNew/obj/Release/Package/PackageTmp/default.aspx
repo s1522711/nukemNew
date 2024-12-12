@@ -171,7 +171,7 @@
                                 <div class="card-text">Price: $<%# Eval("price") %></div>
 
                             </div>
-                            <asp:Button runat="server" Text='Buy' CommandArgument='<%# Eval("itemCode") %>' OnClick="Buy_Click" CssClass='btn btn-primary btn-block col-sm-11 mb-2 mx-auto' />
+                            <asp:Button runat="server" Text='More Info' CommandArgument='<%# Eval("itemCode") %>' OnClick="Buy_Click" CssClass='btn btn-primary btn-block col-sm-11 mb-2 mx-auto' />
                         </div>
                     </div>
                 </ItemTemplate>

@@ -106,6 +106,7 @@
     <Content Include="login\default.aspx" />
     <Content Include="login\style.css" />
     <Content Include="mp3\explosion.mp3" />
+    <Content Include="productPage\default.aspx" />
     <Content Include="register\default.aspx" />
     <Content Include="register\script.js" />
     <Content Include="register\style.css" />
@@ -192,16 +193,19 @@
     <Compile Include="login\default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
     </Compile>
-    <Compile Include="master\MasterPage-old.master.cs">
-      <DependentUpon>MasterPage-old.master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="master\MasterPage.Master.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="master\MasterPage.Master.designer.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="productPage\default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="productPage\default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="register\default.aspx.cs">
@@ -234,7 +238,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="master\MasterPage-old.master" />
     <Content Include="master\MasterPage.Master" />
     <Content Include="img\index\tsar-bobma.webp" />
     <Content Include="img\login\bg.webp" />

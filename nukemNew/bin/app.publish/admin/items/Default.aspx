@@ -85,6 +85,7 @@
                                                 <th scope="col">Item Code</th>
                                                 <th scope="col">Item Name</th>
                                                 <th scope="col">Price</th>
+                                                <th scope="col">Description</th>
                                                 <th scope="col">image Loc</th>
                                                 <th scope="col">Flair Color</th>
                                                 <th scope="col">Flair Text Color</th>
@@ -102,6 +103,7 @@
                                         <th><%# Eval("itemCode") %></th>
                                         <th><%# Eval("itemName") %></th>
                                         <th>$<%# Eval("price") %></th>
+                                        <th><span class="d-inline-block text-truncate" style="max-width: 150px;"><%# Eval("description").ToString() == "" ? "None" : Eval("description") %></span></th>
                                         <th><a href='<%# Eval("imageLocation") %>' target="_blank"><%# Eval("imageLocation") %></a></th>
                                         <th><%# Eval("flairColorClass") %></th>
                                         <th><%# Eval("flairTextColorClass") %></th>
@@ -147,6 +149,10 @@
                     <div class="form-row form-floating mb-3">
                         <input required id="itemPrice" name="itemPrice" type="number" class="form-control mb-2" placeholder="Item Price" />
                         <label for="itemPrice">Item Price</label>
+                    </div>
+                    <div class="form-row form-floating mb-3">
+                        <textarea id="description" name="description" type="text" class="form-control mb-2" maxlength="1000" placeholder=""></textarea>
+                        <label for="description">Item Description (optional)</label>
                     </div>
                     <div class="input-row input-group mb-3">
                         <asp:FileUpload ID="imageUpload" required runat="server" CssClass="form-control" accept="image/png,image/jpeg" />

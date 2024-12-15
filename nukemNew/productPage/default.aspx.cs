@@ -18,10 +18,10 @@ namespace nukemNew.productPage
             logoutBtnDiv.Visible = (bool)Session["login"];
             loginRegisterBtn.Visible = !(bool)Session["login"];
             aboutBtn.Visible = (bool)Session["login"];
-            //productsDiv.Visible = (bool)Session["login"];
-            //notLoggedinDiv.Visible = !(bool)Session["login"];
-            productsDiv.Visible = true;
-            notLoggedinDiv.Visible = false;
+            productsDiv.Visible = (bool)Session["login"];
+            notLoggedinDiv.Visible = !(bool)Session["login"];
+            //productsDiv.Visible = true;
+            //notLoggedinDiv.Visible = false;
             admin.Visible = (bool)Session["admin"] && (bool)Session["login"];
 
             string itemCode = Request.QueryString["itemCode"] != null ? Request.QueryString["itemCode"] : "";

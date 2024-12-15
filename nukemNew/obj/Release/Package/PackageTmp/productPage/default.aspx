@@ -203,6 +203,24 @@
 
                 </ItemTemplate>
             </asp:Repeater>
+            <h1 class="text-center">You might also like:</h1>
+            <div class="row justify-content-center">
+                <asp:Repeater ID="relatedItemsRepeater" runat="server">
+                    <ItemTemplate>
+                        <div class="col-sm-3 mb-2" style="width: 400px">
+                            <div class="card">
+                                <img src='<%# Eval("imageLocation") %>' alt='<%# Eval("itemCode") %>' height="210" class=" card-img-top ">
+                                <div class="card-body">
+                                    <div class="card-title"><%# Eval("itemName") %> <span class='badge <%# Eval("flairColorClass") %> <%# Eval("flairTextColorClass") %>' onclick="location.href='<%# Eval("flairLink").ToString() == "n/a" ? "#" : Eval("flairLink") %>';"><a href='<%# Eval("flairLink").ToString() == "n/a" ? "#" : Eval("flairLink") %>' class=' text-decoration-none <%# Eval("flairTextColorClass") %>'><%# Eval("flairText") %></a></span></div>
+                                    <div class="card-text">Price: $<%# Eval("price") %></div>
+
+                                </div>
+                                <asp:Button runat="server" Text='More Info' CommandArgument='<%# Eval("itemCode") %>' OnClick="Check_Click" CssClass='btn btn-primary btn-block col-sm-11 mb-2 mx-auto' />
+                            </div>
+                        </div>
+                    </ItemTemplate>
+                </asp:Repeater>
+            </div>
         </div>
     </div>
 </asp:Content>

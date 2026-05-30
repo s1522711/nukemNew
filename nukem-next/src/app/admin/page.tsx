@@ -4,6 +4,7 @@ import { redirect } from 'next/navigation'
 import { deleteUser, toggleAdmin } from '@/app/actions/admin'
 
 import { AdminItemsManager } from '@/components/AdminItemsManager'
+import { AdminUserActions } from '@/components/AdminUserActions'
 
 export default async function AdminDashboard() {
   const session = await getSession()
@@ -57,21 +58,7 @@ export default async function AdminDashboard() {
                         {u.admin ? 'Lvl_4_Admin' : 'Lvl_1_User'}
                       </span>
                     </td>
-                    <td className="px-6 py-4 text-right flex justify-end gap-3">
-                      <form action={toggleAdmin}>
-                        <input type="hidden" name="userId" value={u.id} />
-                        <input type="hidden" name="currentAdmin" value={u.admin.toString()} />
-                        <button type="submit" className="text-cyan-glow hover:text-white px-3 py-1 border border-cyan-glow/30 hover:bg-cyan-glow/20 text-[10px] uppercase tracking-widest transition-all">
-                          {u.admin ? 'Revoke' : 'Elevate'}
-                        </button>
-                      </form>
-                      <form action={deleteUser}>
-                        <input type="hidden" name="userId" value={u.id} />
-                        <button type="submit" className="text-crimson hover:text-white px-3 py-1 border border-crimson/30 hover:bg-crimson/20 hover:border-crimson text-[10px] uppercase tracking-widest transition-all">
-                          Purge
-                        </button>
-                      </form>
-                    </td>
+                    <AdminUserActions user={u} />
                   </tr>
                 ))}
               </tbody>

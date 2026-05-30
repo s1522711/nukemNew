@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { createPortal } from 'react-dom'
 import { deleteUser, toggleAdmin } from '@/app/actions/admin'
 
 export function AdminUserActions({ user }: { user: { id: number, admin: boolean } }) {
@@ -58,7 +59,7 @@ export function AdminUserActions({ user }: { user: { id: number, admin: boolean 
       </td>
 
       {/* Confirmation Modal */}
-      {confirmAction && (
+      {confirmAction && createPortal(
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
           <div className="bg-obsidian border border-cyan-glow/50 p-6 max-w-md w-full tactical-border box-shadow-cyan relative">
             
@@ -101,11 +102,12 @@ export function AdminUserActions({ user }: { user: { id: number, admin: boolean 
               </button>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
       {/* Success Modal */}
-      {successMsg && (
+      {successMsg && createPortal(
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
           <div className="bg-obsidian border border-green-500/50 p-6 max-w-md w-full tactical-border shadow-[0_0_15px_rgba(34,197,94,0.2)] relative">
             <h3 className="text-xl font-bold uppercase tracking-widest mb-4 text-green-400 flex items-center gap-2">
@@ -116,15 +118,16 @@ export function AdminUserActions({ user }: { user: { id: number, admin: boolean 
               {successMsg}
             </p>
             <div className="flex justify-end">
-              <button 
-                onClick={() => setSuccessMsg(null)} 
+              <button
+                onClick={() => setSuccessMsg(null)}
                 className="px-6 py-2 border border-green-500/50 text-green-400 hover:bg-green-500/20 uppercase tracking-widest text-xs transition-all"
               >
                 Acknowledge
               </button>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </>
   )

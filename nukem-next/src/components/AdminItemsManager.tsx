@@ -262,11 +262,11 @@ export function AdminItemsManager({ items }: { items: Item[] }) {
                     </div>
                   </div>
 
-                  <div className="flex gap-6 mt-8 pt-6 border-t border-cyan-glow/20 w-full">
-                    <button type="button" onClick={() => setIsModalOpen(false)} className="flex items-center justify-center text-center w-1/3 py-4 px-6 border border-crimson/50 text-crimson hover:bg-crimson hover:text-white transition-colors duration-300 uppercase tracking-[0.2em] text-xs font-bold box-shadow-crimson">
+                  <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mt-8 pt-6 border-t border-cyan-glow/20 w-full">
+                    <button type="button" onClick={() => setIsModalOpen(false)} className="flex items-center justify-center text-center w-full sm:w-1/3 py-4 px-6 border border-crimson/50 text-crimson hover:bg-crimson hover:text-white transition-colors duration-300 uppercase tracking-[0.2em] text-xs font-bold box-shadow-crimson order-2 sm:order-1">
                       Abort_Sequence
                     </button>
-                    <button type="submit" disabled={isSubmitting} className="flex items-center justify-center text-center w-2/3 tactical-border-sm bg-cyan-glow/10 border border-cyan-glow text-cyan-glow font-bold uppercase tracking-[0.3em] hover:bg-cyan-glow hover:text-obsidian hover:box-shadow-cyan transition-all duration-300 disabled:opacity-50 py-4 px-8 text-xs">
+                    <button type="submit" disabled={isSubmitting} className="flex items-center justify-center text-center w-full sm:w-2/3 tactical-border-sm bg-cyan-glow/10 border border-cyan-glow text-cyan-glow font-bold uppercase tracking-[0.3em] hover:bg-cyan-glow hover:text-obsidian hover:box-shadow-cyan transition-all duration-300 disabled:opacity-50 py-4 px-8 text-xs order-1 sm:order-2">
                       {isSubmitting ? 'PROCESSING_UPLINK...' : 'AUTHORIZE_INSERTION'}
                     </button>
                   </div>

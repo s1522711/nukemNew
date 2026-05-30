@@ -117,7 +117,7 @@ export function CheckoutClientForm({ itemCode }: { itemCode: string }) {
     <form action={processCheckout} className="space-y-6">
       <input type="hidden" name="itemCode" value={itemCode} />
       
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div>
           <label className="block text-xs font-bold text-slate-400 mb-2 uppercase tracking-widest">First Name</label>
           <input name="firstName" required className="w-full bg-obsidian border border-obsidian-border rounded-none px-4 py-3 text-cyan-glow font-mono focus:border-cyan-glow focus:outline-none focus:ring-1 focus:ring-cyan-glow transition-colors box-shadow-cyan" />
@@ -182,7 +182,7 @@ export function CheckoutClientForm({ itemCode }: { itemCode: string }) {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div>
           <label className="block text-xs font-bold text-slate-400 mb-2 uppercase tracking-widest">Valid Thru</label>
           <input 

@@ -48,8 +48,8 @@ export default async function ProductPage({ searchParams }: { searchParams: { it
   const suggestedItems = shuffled.slice(0, 3)
 
   return (
-    <div className="container mx-auto px-4 py-16 max-w-7xl animate-fade-in relative">
-      <div className="absolute top-0 right-10 text-[200px] font-bold text-obsidian-border/30 z-0 select-none tracking-tighter">
+    <div className="container mx-auto px-4 py-16 max-w-7xl animate-fade-in relative overflow-hidden md:overflow-visible">
+      <div className="absolute top-0 right-10 text-[100px] md:text-[200px] font-bold text-obsidian-border/30 z-0 select-none tracking-tighter">
         {item.itemCode}
       </div>
 

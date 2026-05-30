@@ -34,10 +34,11 @@ export async function processCheckout(formData: FormData) {
   
   if (!address || address.length < 3 || address.length > 50) redirect(`/checkout?itemCode=${itemCode}&error=Invalid+address`)
   if (!zip || zip.length < 3 || zip.length > 50) redirect(`/checkout?itemCode=${itemCode}&error=Invalid+zip`)
-  if (!ccName || ccName.length < 3 || ccName.length > 50) redirect(`/checkout?itemCode=${itemCode}&error=Invalid+CC+name`)
-  if (!ccNumber || ccNumber.length < 15 || ccNumber.length > 16) redirect(`/checkout?itemCode=${itemCode}&error=Invalid+CC+number`)
-  if (!ccExpiration || ccExpiration.replace(' / ', '').length !== 4) redirect(`/checkout?itemCode=${itemCode}&error=Invalid+CC+expiration`)
-  if (!ccCvv || ccCvv.length < 3 || ccCvv.length > 4) redirect(`/checkout?itemCode=${itemCode}&error=Invalid+CC+CVV`)
+  // Disabled CC validity verification per request
+  // if (!ccName || ccName.length < 3 || ccName.length > 50) redirect(`/checkout?itemCode=${itemCode}&error=Invalid+CC+name`)
+  // if (!ccNumber || ccNumber.length < 15 || ccNumber.length > 16) redirect(`/checkout?itemCode=${itemCode}&error=Invalid+CC+number`)
+  // if (!ccExpiration || ccExpiration.replace(' / ', '').length !== 4) redirect(`/checkout?itemCode=${itemCode}&error=Invalid+CC+expiration`)
+  // if (!ccCvv || ccCvv.length < 3 || ccCvv.length > 4) redirect(`/checkout?itemCode=${itemCode}&error=Invalid+CC+CVV`)
 
   const item = await prisma.item.findUnique({ where: { itemCode } })
   if (!item) redirect(`/checkout?itemCode=${itemCode}&error=Item+not+found`)

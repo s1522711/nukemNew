@@ -33,13 +33,13 @@ export default async function Home() {
         <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center animate-fade-in">
           <div className="flex items-center gap-4 mb-4">
             <span className="w-12 h-px bg-cyan-glow"></span>
-            <span className="text-cyan-glow tracking-[0.3em] text-sm font-bold">SYSTEM ONLINE</span>
+            <span className="text-cyan-glow tracking-[0.3em] text-xs sm:text-sm font-bold">SYSTEM ONLINE</span>
             <span className="w-12 h-px bg-cyan-glow"></span>
           </div>
-          <h1 className="text-5xl md:text-7xl font-bold tracking-[0.1em] text-slate-100 mb-6 drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">
+          <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold tracking-[0.1em] text-slate-100 mb-6 drop-shadow-[0_0_15px_rgba(255,255,255,0.2)] text-center break-words max-w-[90vw]">
             NUKEM<span className="text-cyan-glow text-shadow-cyan">_COMMAND</span>
           </h1>
-          <p className="text-xl md:text-2xl text-slate-400 mb-10 max-w-2xl font-sans font-light tracking-wide">
+          <p className="text-lg md:text-2xl text-slate-400 mb-10 max-w-2xl font-sans font-light tracking-wide px-4">
             Global Armaments & Tactical Ordnance Logistics Network.
           </p>
           <a href="#database" className="tactical-border bg-cyan-glow/10 border border-cyan-glow text-cyan-glow font-bold px-10 py-4 hover:bg-cyan-glow hover:text-obsidian hover:box-shadow-cyan transition-all duration-300 tracking-[0.2em]">

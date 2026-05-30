@@ -30,11 +30,11 @@ export default async function CheckoutPage({ searchParams }: { searchParams: { i
       )}
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-        <div className="lg:col-span-2">
+        <div className="lg:col-span-2 order-2 lg:order-1">
           <CheckoutClientForm itemCode={item.itemCode} />
         </div>
 
-        <div className="lg:col-span-1">
+        <div className="lg:col-span-1 order-1 lg:order-2">
           <div className="bg-obsidian-light/50 border border-obsidian-border p-6 sticky top-24 tactical-border backdrop-blur-md">
             <h3 className="text-lg font-bold text-cyan-glow mb-6 tracking-widest uppercase flex items-center gap-2">
               <span className="w-2 h-2 bg-cyan-glow"></span>
